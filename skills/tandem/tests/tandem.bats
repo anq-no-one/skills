@@ -174,6 +174,12 @@ argv_has_pair() {
   [ "$status" -eq 0 ]
 }
 
+@test "an agent without its required arguments prints usage" {
+  run "$SCRIPTS/agent.sh" --runner claude/opus
+  [ "$status" -eq 2 ]
+  [[ "$output" == *"usage: agent.sh"* ]]
+}
+
 @test "an unknown executor fails instead of guessing" {
   spawn --runner ghost/opus
   [ "$status" -eq 2 ]

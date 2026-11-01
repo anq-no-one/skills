@@ -37,7 +37,9 @@ while [ $# -gt 0 ]; do
   esac
 done
 
-[ -n "$runner" ] && [ -n "$workdir" ] && [ -n "$prompt" ] && [ -n "$out" ] || usage
+if [ -z "$runner" ] || [ -z "$workdir" ] || [ -z "$prompt" ] || [ -z "$out" ]; then
+  usage
+fi
 [ -f "$prompt" ] || { echo "agent.sh: no prompt file at $prompt" >&2; exit 2; }
 [ -d "$workdir" ] || { echo "agent.sh: no workdir at $workdir" >&2; exit 2; }
 

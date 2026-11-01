@@ -1,0 +1,41 @@
+{
+  "skill_name": "iphone-duo-support",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We need iPhone Duo support. I have the Xcode 27.2 beta installed. What SDK do we build with, and what is the first production change you would make?",
+      "expected_output": "Refuses Xcode 27.2 as the Duo SDK and points at Xcode 27.1. The first change is an audit of idiom and size-class branches, not a hinge listener or AirPlay work.",
+      "files": [],
+      "expectations": [
+        "Names Xcode 27.1, not 27.2, as the Duo toolchain",
+        "Cites Preparing your app for iPhone Duo or the Xcode 27.1 release notes",
+        "Does not treat an external display scene as the Duo outer display",
+        "Does not use hinge angle as the layout API"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "The video player looks broken when I fold the phone in half: the pause button and the camera preview sit in the crease. Fix it for iPhone Duo.",
+      "expected_output": "Treats this as an overlay arrangement and reserved-region problem, removes idiom-based sizes, keeps the orientation mask separate from layout, and verifies a half-fold pose.",
+      "files": [],
+      "expectations": [
+        "Uses ArrangementView or UIArrangementViewController overlay, or reservedRegions, for the fold",
+        "Replaces idiom-based sizing with size class or container bounds",
+        "Mentions opting the player out of vertical bars when they collide with its controls",
+        "Includes half-fold verification"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Can we show a timer on the outer screen while the user is in the app on the inner display? Also the QR scanner should pick the right selfie camera when they open the phone.",
+      "expected_output": "Outer-display UI is not a general second window, only a camera capture accessory during rear capture. The virtual front camera already switches, with AVCaptureDeviceDirectionCoordinator when direction matters. The simulator cannot prove camera behaviour.",
+      "files": [],
+      "expectations": [
+        "Rejects a general-purpose second window on the outer display",
+        "Mentions CameraCaptureAccessory or UISceneAccessory.cameraCapture and their limits",
+        "Mentions the virtual front camera or AVCaptureDeviceDirectionCoordinator",
+        "Notes that the Duo simulator has no camera"
+      ]
+    }
+  ]
+}

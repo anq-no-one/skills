@@ -1,0 +1,21 @@
+{
+  "preset": "default",
+  "presets": {
+    "default": { "writer": "claude/opus:medium",      "reviewer": "codex/gpt-5.6-sol:medium" },
+    "astra":   { "writer": "codex/gpt-6-astra:high",  "reviewer": "claude/fable:high" },
+    "cheap":   { "writer": "claude/sonnet:medium",    "reviewer": "codex/gpt-5.6-sol:low" }
+  },
+  "executors": {
+    "claude": { "kind": "claude", "command": ["claude"] },
+    "codex":  { "kind": "codex",  "command": ["codex"] },
+    "cursor": { "kind": "cursor", "command": ["cursor-agent"] }
+  },
+  "scopes": [],
+  "gate": ["critical", "major"],
+  "timeouts": { "writer_minutes": 45, "reviewer_minutes": 20 },
+  "worktree_root": "~/.cache/tandem/worktrees",
+  "state_root": "~/.cache/tandem/runs",
+  "final_review": { "enabled": true, "profile": "pair" },
+  "lookahead": 1,
+  "project_rules": ""
+}
